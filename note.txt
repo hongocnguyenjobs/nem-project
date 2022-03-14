@@ -1,0 +1,5 @@
+1. Custome login và register (Jetstream)
+    - resources > register.blade.php
+    - database > migrations > users_table
+    - models > user.php
+    - actions > fortify > CreateNewUser.php
