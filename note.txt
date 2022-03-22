@@ -3,3 +3,24 @@
     - database > migrations > users_table
     - models > user.php
     - actions > fortify > CreateNewUser.php
+2. Admin Login
+    - Tạo database Admin:
+        + "php artisan make:model Admin": Tạo một file model Admin
+        + "php artisan make:migration create_admins_table": Tạo file migrations Admin
+        + "php artisan migrate:fresh": fresh lại toàn bộ databse (bao gồm tạo Admin databse)
+        + "php artisan tinker": Tạo một dữ liệu databse
+            >>> $admin = new App\Models\Admin;
+            => App\Models\Admin {#3823}
+            >>> $admin->name = "RinAdmin";
+            => "RinAdmin"
+            >>> $admin->email = "hongocnguyenjobs@gmail.com"
+            => "hongocnguyenjobs@gmail.com"
+            >>> $admin->password = Hash::make("nguyen123"); //Dùng hàm Hash::make để mã hóa password
+            >>> $admin->save();
+            >>> exit;
+    - Tạo một guards cho Admin trong config/auth //Là một cách cung cấp logic được dùng để xác thực người dùng.
+    - Xử dụng attempt (1 biến của guards) trong AdminController để xác nhân đăng nhập
+3. Admin Dashboard:
+    - Tạo middleware để không viết đi viết lại nhiều lần một chức năng
+        + "php artisan make:middleware Admin": Tạo một file middleware
+        + app>http>Kernel.php: Khai báo middleware
